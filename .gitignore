@@ -1,7 +1,8 @@
 /shelf/
 /workspace.xml
 .idea
-sentiment
+sentiment/assets
+sentiment/variables
 secret.py
 templates
 static
