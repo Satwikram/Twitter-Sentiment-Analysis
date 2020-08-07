@@ -36,23 +36,29 @@ def predict(request):
 
         # Loading the saved model
         print("Loading model...")
-        model = tf.saved_model.load("sentiment\saved_model.pb")
+        model = tf.saved_model.load("sentiment")
 
         print("Signatures of model:",print(list(model.signatures.keys())))
 
         predictor = model.signatures["serving_default"]
         print(predictor.structured_outputs)
 
-        result = predictor(tf.constant(tweet))
+        tweet = np.array([tweet])
 
-        result['output_1'][0][0]
+        result = predictor(tf.constant(tweet))
+        print("Predictions:",result)
+        print("The probability score:",result['output_1'][0][0])
 
         if result['output_1'][0][0] < .5:
             message = "Oops!, thats a negative twwet :("
+            score = result['output_1'][0][0]
+            output = [message, score]
 
         else:
             message = "Its a positive tweet :)"
+            score = result['output_1'][0][0]
+            output = [message, score]
 
-        return render(request, 'results.html', {'message': message})
+        return render(request, 'results.html', {'output': output})
     else:
         return render(request, 'predict.html')
