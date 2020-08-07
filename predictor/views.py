@@ -52,11 +52,15 @@ def predict(request):
         if result['output_1'][0][0] < .5:
             message = "Oops!, thats a negative twwet :("
             score = result['output_1'][0][0]
+            score = np.array(score)
+            print("The score is:", score)
             output = [message, score]
 
         else:
             message = "Its a positive tweet :)"
             score = result['output_1'][0][0]
+            score = np.array(score)
+            print("The score is:",score)
             output = [message, score]
 
         return render(request, 'results.html', {'output': output})
