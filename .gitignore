@@ -4,7 +4,6 @@
 sentiment/assets
 sentiment/variables
 secret.py
-templates
 static
 
 # Byte-compiled / optimized / DLL files
