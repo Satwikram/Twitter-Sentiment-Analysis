@@ -53,6 +53,7 @@ def predict(request):
             message = "Oops!, thats a negative twwet :("
             score = result['output_1'][0][0]
             score = np.array(score)
+            score = score * 100
             print("The score is:", score)
             output = [message, score]
 
@@ -60,6 +61,7 @@ def predict(request):
             message = "Its a positive tweet :)"
             score = result['output_1'][0][0]
             score = np.array(score)
+            score = score * 100
             print("The score is:",score)
             output = [message, score]
 
